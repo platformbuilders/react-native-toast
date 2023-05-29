@@ -40,7 +40,7 @@ export const TextContainer = styled.View`
 `;
 
 export const Title = styled.Text<TextProps>`
-  font-size: ${moderateScale(16)}px;
+  font-size: 16px;
   font-weight: ${fontWeight};
   margin-bottom: ${moderateScale(10)}px;
   font-family: ${({ fontFamily }) => fontFamily ?? fontDefault};
@@ -48,7 +48,7 @@ export const Title = styled.Text<TextProps>`
 `;
 
 export const Message = styled.Text<TextProps>`
-  font-size: ${moderateScale(14)}px;
+  font-size: 14px;
   font-family: ${({ fontFamily }) => fontFamily ?? fontDefault};
   color: ${({ textColor }) => textColor ?? '#fff'};
   margin-bottom: ${moderateScale(10)}px;
@@ -73,7 +73,7 @@ export const CloseButton = styled.Pressable.attrs({
 `;
 
 export const CloseText = styled.Text<TextProps>`
-  font-size: ${moderateScale(12)}px;
+  font-size: 12px;
   font-family: ${({ fontFamily }) => fontFamily ?? fontDefault};
   color: ${({ textColor }) => textColor ?? '#fff'};
 `;
