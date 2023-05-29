@@ -1,11 +1,16 @@
 {
   "compilerOptions": {
-    /* Basic Options */
     "target": "es6",
-    "module": "es6",
-    "lib": ["esnext", "DOM"],
-    "types": ["react", "jest"],
-    "jsx": "react",
+    "module": "esnext",
+    "lib": [
+      "esnext",
+      "DOM"
+    ],
+    "types": [
+      "react",
+      "jest"
+    ],
+    "jsx": "react-jsx",
     "declaration": true,
     "declarationMap": true,
     "experimentalDecorators": true,
@@ -15,26 +20,32 @@
     "resolveJsonModule": true,
     "baseUrl": ".",
     "skipLibCheck": true,
-    /* Strict Type-Checking Options */
     "strict": true,
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "strictNullChecks": true,
     "strictFunctionTypes": true,
     "strictPropertyInitialization": true,
     "noImplicitThis": true,
     "alwaysStrict": true,
-    "suppressImplicitAnyIndexErrors": true,
-    /* Additional Checks */
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    /* Module Resolution Options */
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "allowJs": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "noEmit": true
   },
   "compileOnSave": true,
-  "include": ["src"],
-  "exclude": ["node_modules", "dist", "rollup.config.js"]
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "rollup.config.js"
+  ]
 }
