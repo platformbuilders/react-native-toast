@@ -14,6 +14,7 @@ export const Toast = () => {
   const toast = (toast: string) => {
     if (toast === 'success') {
       showToast({
+        title: 'Sucesso',
         message: 'Toast de notificação de sucesso',
         type: 'success',
       });
