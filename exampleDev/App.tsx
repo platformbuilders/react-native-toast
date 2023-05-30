@@ -6,13 +6,14 @@ import {
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 
-export default function App() {
+import check from './src/assets/check.png';
+
+export const Toast = () => {
   const {showToast} = useToast();
 
   const toast = (toast: string) => {
     if (toast === 'success') {
       showToast({
-        // title: 'Sucesso',
         message: 'Toast de notificação de sucesso',
         type: 'success',
       });
@@ -41,6 +42,25 @@ export default function App() {
   };
 
   return (
+    <View style={styles.container}>
+      <TouchableOpacity style={styles.button} onPress={() => toast('success')}>
+        <Text>Sucesso</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={() => toast('alert')}>
+        <Text>Alerta</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={() => toast('warning')}>
+        <Text>Warning</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={() => toast('custom')}>
+        <Text>Custom</Text>
+      </TouchableOpacity>
+    </View>
+  )
+}
+
+export default function App() {
+  return (
     <SafeAreaProvider>
       <GestureHandlerRootView style={{flex: 1}}>
         <ToastProvider
@@ -50,6 +70,7 @@ export default function App() {
             },
             icon: {
               custom: {
+                icon: check,
                 height: 22,
                 width: 22,
               },
@@ -62,20 +83,7 @@ export default function App() {
             },
             showIcon: true,
           }}>
-          <View style={styles.container}>
-            <TouchableOpacity style={styles.button} onPress={() => toast('success')}>
-              <Text>Sucesso</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.button}>
-              <Text>Alerta</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.button}>
-              <Text>Warning</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.button}>
-              <Text>Custom</Text>
-            </TouchableOpacity>
-          </View>
+          <Toast />
         </ToastProvider>
       </GestureHandlerRootView>
     </SafeAreaProvider>
