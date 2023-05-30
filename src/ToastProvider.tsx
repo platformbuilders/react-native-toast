@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState } from 'react';
 import { ImageSourcePropType } from 'react-native';
-import { Toast, ToastProps, ToastType } from '.';
+import { Toast, ToastProps } from '.';
 
 type ToastConfigProvider = {
   fontFamily?: string;
@@ -64,7 +64,7 @@ const ToastContext = createContext<ContextType>({
 export const ToastProvider = ({ children, config }: ToastProviderProps) => {
   const [toast, setToast] = useState<ToastProps>({
     title: undefined,
-    message: undefined,
+    message: '',
     type: 'success',
     duration: 0,
   });
@@ -74,27 +74,16 @@ export const ToastProvider = ({ children, config }: ToastProviderProps) => {
     toast.message !== null ||
     toast.message !== undefined;
 
-  const defaultTitle = (toastType: ToastType) => {
-    if (toastType === 'success') return 'Sucesso';
-    if (toastType === 'alert') return 'Alerta';
-    if (toastType === 'warning') return 'Erro';
-    if (toastType === 'custom') return '';
-    return '';
-  };
-
-  const defaultToastValues = (toastType: ToastType) => {
-    return {
-      toastType: 'success',
-      duration: 3000,
-      title: defaultTitle(toastType),
-    };
+  const defaultToastValues = {
+    toastType: 'success',
+    duration: 3000,
   };
 
   const showToast = async (toast: ToastProps) => {
     setToast({
-      title: toast.title || defaultToastValues(toast.type).title,
-      type: toast.type || defaultToastValues(toast.type).toastType,
-      duration: toast.duration || defaultToastValues(toast.type).duration,
+      title: toast.title,
+      type: toast.type || defaultToastValues.toastType,
+      duration: toast.duration || defaultToastValues.duration,
       message: toast.message,
     });
   };

@@ -5,10 +5,13 @@ import { moderateScale } from '@platformbuilders/helpers/native';
 
 const fontDefault = Platform.OS === 'android' ? 'Roboto' : 'Helvetica';
 const fontWeight = Platform.OS === 'android' ? 'bold' : 500;
+const handlePaddingTop = (hasTitle: boolean) =>
+  hasTitle ? moderateScale(10) : moderateScale(16);
 
 interface ContainerProps {
   backgroundColor: string;
   paddingTop: number;
+  hasTitle: boolean;
 }
 
 interface TextProps {
@@ -30,7 +33,8 @@ export const Container = styled(Animated.View)<ContainerProps>`
 
   width: 100%;
   background-color: ${({ backgroundColor }) => backgroundColor};
-  padding-top: ${({ paddingTop }) => paddingTop + moderateScale(4)}px;
+  padding-top: ${({ paddingTop, hasTitle }) =>
+    paddingTop + handlePaddingTop(hasTitle)}px;
   padding-left: ${moderateScale(14)}px;
 `;
 
