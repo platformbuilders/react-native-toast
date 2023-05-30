@@ -26,7 +26,7 @@ import {
 
 export type ToastType = 'success' | 'alert' | 'warning' | 'custom';
 
-export type ToastConfig = {
+type ToastConfig = {
   fontFamily?: string;
   textColor?: string;
   backgroundColor?: {
