@@ -1,12 +1,10 @@
 import { Platform } from 'react-native';
 import Animated from 'react-native-reanimated';
 import styled from 'styled-components/native';
-import { moderateScale } from '@platformbuilders/helpers/native';
 
 const fontDefault = Platform.OS === 'android' ? 'Roboto' : 'Helvetica';
 const fontWeight = Platform.OS === 'android' ? 'bold' : 500;
-const handlePaddingTop = (hasTitle: boolean) =>
-  hasTitle ? moderateScale(10) : moderateScale(16);
+const handlePaddingTop = (hasTitle: boolean) => (hasTitle ? 12 : 18);
 
 interface ContainerProps {
   backgroundColor: string;
@@ -35,33 +33,33 @@ export const Container = styled(Animated.View)<ContainerProps>`
   background-color: ${({ backgroundColor }) => backgroundColor};
   padding-top: ${({ paddingTop, hasTitle }) =>
     paddingTop + handlePaddingTop(hasTitle)}px;
-  padding-left: ${moderateScale(14)}px;
+  padding-left: 16px;
 `;
 
 export const TextContainer = styled.View`
   flex: 1;
-  padding-right: ${moderateScale(12)}px;
+  padding-right: 14px;
 `;
 
 export const Title = styled.Text<TextProps>`
   font-size: 16px;
   font-weight: ${fontWeight};
-  margin-bottom: ${moderateScale(10)}px;
+  margin-bottom: 12px;
   font-family: ${({ fontFamily }) => fontFamily ?? fontDefault};
   color: ${({ textColor }) => textColor ?? '#fff'};
 `;
 
 export const Message = styled.Text<TextProps>`
-  font-size: 14px;
+  font-size: 15px;
   font-family: ${({ fontFamily }) => fontFamily ?? fontDefault};
   color: ${({ textColor }) => textColor ?? '#fff'};
-  margin-bottom: ${moderateScale(10)}px;
+  margin-bottom: 10px;
 `;
 
 export const Icon = styled.Image<IconProps>`
-  height: ${({ height }) => height ?? moderateScale(25)}px;
-  width: ${({ width }) => width ?? moderateScale(25)}px;
-  margin-right: ${moderateScale(14)}px;
+  height: ${({ height }) => height ?? 24}px;
+  width: ${({ width }) => width ?? 24}px;
+  margin-right: 16px;
 `;
 
 export const CloseButton = styled.Pressable.attrs({
@@ -73,11 +71,11 @@ export const CloseButton = styled.Pressable.attrs({
   },
 })`
   align-self: center;
-  padding-right: ${moderateScale(16)}px;
+  padding-right: 16px;
 `;
 
 export const CloseText = styled.Text<TextProps>`
-  font-size: 12px;
+  font-size: 13px;
   font-family: ${({ fontFamily }) => fontFamily ?? fontDefault};
   color: ${({ textColor }) => textColor ?? '#fff'};
 `;
