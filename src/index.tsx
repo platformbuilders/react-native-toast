@@ -74,7 +74,7 @@ export type ToastConfig = {
 
 export type ToastProps = {
   title?: string | undefined;
-  message?: string;
+  message: string;
   type: ToastType;
   duration?: number;
 };
@@ -107,13 +107,14 @@ export const Toast: FC<Props> = ({ data, config }) => {
   const [toastHeight, setToastHeight] = useState(0);
   const [toast, setToast] = useState<ToastProps>({
     title: undefined,
-    message: undefined,
+    message: '',
     type: 'success',
   });
 
   const showCloseButton = config.showCloseButton[data.type];
   const disabledAutoHide = config.autoHide[data.type];
   const disabledGesture = !disabledAutoHide;
+  const hasTitle = !!data.title;
 
   const handleBackgroundColor = () => {
     const success = '#22bb33';
@@ -175,7 +176,7 @@ export const Toast: FC<Props> = ({ data, config }) => {
   const resetToastValues = () => {
     setToast({
       title: undefined,
-      message: undefined,
+      message: '',
       type: 'success',
     });
   };
@@ -261,6 +262,7 @@ export const Toast: FC<Props> = ({ data, config }) => {
         onLayout={handleViewLayout}
         backgroundColor={handleBackgroundColor()}
         paddingTop={insets.top}
+        hasTitle={hasTitle}
         style={toastAnimatedStyle}
       >
         {showIcon && (
@@ -271,17 +273,20 @@ export const Toast: FC<Props> = ({ data, config }) => {
           />
         )}
         <TextContainer>
-          <Title fontFamily={config?.fontFamily} textColor={config?.textColor}>
-            {data.title}
-          </Title>
-          {!!data.message && (
-            <Message
+          {!!data.title && (
+            <Title
               fontFamily={config?.fontFamily}
               textColor={config?.textColor}
             >
-              {data?.message}
-            </Message>
+              {data.title}
+            </Title>
           )}
+          <Message
+            fontFamily={config?.fontFamily}
+            textColor={config?.textColor}
+          >
+            {data?.message}
+          </Message>
         </TextContainer>
         {showCloseButton && (
           <CloseButton onPress={dismissToast}>
