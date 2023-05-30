@@ -5,8 +5,8 @@ import {
 } from '@platformbuilders/react-native-toast/ToastProvider';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
+import {toastConfig} from './src/config/toastConfig'
 
-import check from './src/assets/check.png';
 
 export const Toast = () => {
   const {showToast} = useToast();
@@ -63,26 +63,7 @@ export default function App() {
   return (
     <SafeAreaProvider>
       <GestureHandlerRootView style={{flex: 1}}>
-        <ToastProvider
-          config={{
-            backgroundColor: {
-              custom: '#000',
-            },
-            icon: {
-              custom: {
-                icon: check,
-                height: 22,
-                width: 22,
-              },
-            },
-            autoHide: {
-              custom: false,
-            },
-            showCloseButton: {
-              custom: true,
-            },
-            showIcon: true,
-          }}>
+        <ToastProvider config={toastConfig}>
           <Toast />
         </ToastProvider>
       </GestureHandlerRootView>
