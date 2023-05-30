@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState } from 'react';
 import { ImageSourcePropType } from 'react-native';
 import { Toast, ToastProps } from '.';
 
-type ToastConfigProvider = {
+export type ToastConfigProps = {
   fontFamily?: string;
   textColor?: string;
   backgroundColor?: {
@@ -54,7 +54,7 @@ type ContextType = {
 
 interface ToastProviderProps {
   children: React.ReactNode;
-  config?: ToastConfigProvider;
+  config?: ToastConfigProps;
 }
 
 const ToastContext = createContext<ContextType>({
