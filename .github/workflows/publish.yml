@@ -20,7 +20,9 @@ jobs:
         env:
           PACKAGES_NPMRC: ${{ secrets.PACKAGES_NPMRC }}
       - name: Install
-        run: npm install --legacy-peer-deps
+        run: yarn
+      - name: Build
+        run: yarn build
 
       - uses: actions/setup-node@v1
         with:
