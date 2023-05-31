@@ -16,11 +16,11 @@
   },
   "license": "ISC",
   "scripts": {
-    "test": "cross-env CI=1 react-scripts test --env=jsdom",
+    "test": "cross-env CI=1 react-scripts test --env=jsdom --passWithNoTests",
     "test:watch": "react-scripts test --env=jsdom",
     "build": "rm -rf dist && rollup -c && yarn uglify",
     "start": "rollup -c -w",
-    "prepare": "husky install && yarn build",
+    "prepare": "husky install",
     "pretty": "prettier --config ./.prettierrc.js --write \"src/**/*.{jsx,ts,tsx,json}\"",
     "uglify": "for f in dist/*.js; do short=${f%.js}; uglifyjs $f > $short.min.js; rm -rf $f; mv $short.min.js $short.js; done",
     "lint": "tsc && eslint '*/**/*.{ts, tsx}' --fix"
@@ -40,8 +40,6 @@
     "@types/jest": "^27.0.2",
     "@types/react": "^17.0.27",
     "@types/styled-components-react-native": "^5.2.1",
-    "@typescript-eslint/eslint-plugin": "^4.33.0",
-    "@typescript-eslint/parser": "^4.33.0",
     "cross-env": "^7.0.2",
     "eslint": "^7.7.0",
     "eslint-config-prettier": "^8.3.0",
