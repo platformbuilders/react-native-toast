@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState } from 'react';
 import { ImageSourcePropType } from 'react-native';
-import { Toast, ToastProps } from '.';
+import { Toast, ToastProps, ToastType } from './Toast';
 
 export type ToastConfigProps = {
   fontFamily?: string;
@@ -82,7 +82,7 @@ export const ToastProvider = ({ children, config }: ToastProviderProps) => {
   const showToast = async (toast: ToastProps) => {
     setToast({
       title: toast.title,
-      type: toast.type || defaultToastValues.toastType,
+      type: toast.type || (defaultToastValues.toastType as ToastType),
       duration: toast.duration || defaultToastValues.duration,
       message: toast.message,
     });
