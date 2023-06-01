@@ -1,20 +1,19 @@
 {
   "compilerOptions": {
-    "target": "es6",
-    "module": "esnext",
+    "target": "ESNext",
+    "module": "CommonJS",
     "lib": [
-      "esnext",
-      "DOM"
+      "ESNext",
     ],
     "types": [
       "react",
-      "jest"
+      "jest",
     ],
-    "jsx": "react-jsx",
+    "jsx": "react",
     "declaration": true,
-    "declarationMap": true,
+    "declarationMap": false,
     "experimentalDecorators": true,
-    "sourceMap": true,
+    "sourceMap": false,
     "outDir": "dist",
     "importHelpers": true,
     "resolveJsonModule": true,
@@ -37,11 +36,12 @@
     "allowJs": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
-    "noEmit": true
+    "noEmit": false
   },
   "compileOnSave": true,
   "include": [
-    "src"
+    "src/**/*",
+    "types/**/*"
   ],
   "exclude": [
     "node_modules",

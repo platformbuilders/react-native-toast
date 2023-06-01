@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from 'react';
-import { ImageSourcePropType, LayoutChangeEvent } from 'react-native';
+import { LayoutChangeEvent } from 'react-native';
 import {
   PanGestureHandler,
   PanGestureHandlerGestureEvent,
@@ -14,6 +14,7 @@ import {
   withTiming,
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { PanGestureContextType, ToastConfig, ToastProps } from '../types/index';
 import {
   CloseButton,
   CloseText,
@@ -24,83 +25,12 @@ import {
   Title,
 } from './styles';
 
-export type ToastType = 'success' | 'alert' | 'warning' | 'custom';
-
-type ToastConfig = {
-  fontFamily?: string;
-  textColor?: string;
-  backgroundColor?: {
-    success?: string;
-    alert?: string;
-    warning?: string;
-    custom?: string;
-  };
-  icon: {
-    success: {
-      icon?: ImageSourcePropType;
-      height?: number;
-      width?: number;
-    };
-    alert: {
-      icon?: ImageSourcePropType;
-      height?: number;
-      width?: number;
-    };
-    warning: {
-      icon?: ImageSourcePropType;
-      height?: number;
-      width?: number;
-    };
-    custom: {
-      icon?: ImageSourcePropType;
-      height?: number;
-      width?: number;
-    };
-  };
-  autoHide: {
-    success: boolean;
-    alert: boolean;
-    warning: boolean;
-    custom: boolean;
-  };
-  showCloseButton: {
-    success: boolean;
-    alert: boolean;
-    warning: boolean;
-    custom: boolean;
-  };
-  showIcon?: boolean;
-};
-
-export type ToastProps = {
-  title?: string | undefined;
-  message: string;
-  type: ToastType;
-  duration?: number;
-};
-
 type Props = {
   children?: React.ReactNode;
   data: ToastProps;
   config: ToastConfig;
 };
 
-type PanGestureContextType = {
-  translateY: number;
-};
-
-/**
- *
- * @typedef {ToastProps} - Parâmetros do toast
- *
- * @example
- * const { showToast } = useToast();
- * showToast({
- * title: 'Sucesso',
- * message: 'Toast de notificação de sucesso',
- * type: 'success',
- *});
- */
 export const Toast: FC<Props> = ({ data, config }) => {
   const insets = useSafeAreaInsets();
 

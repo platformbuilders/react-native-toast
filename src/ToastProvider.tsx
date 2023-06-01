@@ -1,61 +1,11 @@
 import React, { createContext, useContext, useState } from 'react';
-import { ImageSourcePropType } from 'react-native';
-import { Toast, ToastProps, ToastType } from './Toast';
-
-export type ToastConfigProps = {
-  fontFamily?: string;
-  textColor?: string;
-  backgroundColor?: {
-    success?: string;
-    alert?: string;
-    warning?: string;
-    custom?: string;
-  };
-  icon?: {
-    success?: {
-      icon?: ImageSourcePropType;
-      height?: number;
-      width?: number;
-    };
-    alert?: {
-      icon?: ImageSourcePropType;
-      height?: number;
-      width?: number;
-    };
-    warning?: {
-      icon?: ImageSourcePropType;
-      height?: number;
-      width?: number;
-    };
-    custom?: {
-      icon?: ImageSourcePropType;
-      height?: number;
-      width?: number;
-    };
-  };
-  autoHide?: {
-    success?: boolean;
-    alert?: boolean;
-    warning?: boolean;
-    custom?: boolean;
-  };
-  showCloseButton?: {
-    success?: boolean;
-    alert?: boolean;
-    warning?: boolean;
-    custom?: boolean;
-  };
-  showIcon?: boolean;
-};
-
-type ContextType = {
-  showToast(data: ToastProps): void;
-};
-
-interface ToastProviderProps {
-  children: React.ReactNode;
-  config?: ToastConfigProps;
-}
+import {
+  ContextType,
+  ToastProps,
+  ToastProviderProps,
+  ToastType,
+} from '../types/index';
+import { Toast } from './Toast';
 
 const ToastContext = createContext<ContextType>({
   showToast: () => {},

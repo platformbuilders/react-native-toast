@@ -1,6 +1,6 @@
 {
   "name": "@platformbuilders/react-native-toast",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "",
   "author": "Platform Builders <apps@platformbuilders.io>",
   "repository": {
@@ -8,7 +8,6 @@
     "url": "git+https://github.com/platformbuilders/template-hooks.git"
   },
   "main": "dist/index.js",
-  "module": "dist/index.es.js",
   "types": "dist/index.d.ts",
   "engines": {
     "node": ">=12",
@@ -19,7 +18,7 @@
     "test": "cross-env CI=1 react-scripts test --env=jsdom --passWithNoTests",
     "test:watch": "react-scripts test --env=jsdom",
     "build": "rm -rf dist && npm run build:cjs",
-    "build:cjs": "tsc ./src/index.ts --module CommonJS --jsx react-jsx --outDir dist --skipLibCheck true --esModuleInterop true",
+    "build:cjs": "tsc --project ./tsconfig.json",
     "start": "rollup -c -w",
     "prepare": "husky install",
     "pretty": "prettier --config ./.prettierrc.js --write \"src/**/*.{jsx,ts,tsx,json}\"",
