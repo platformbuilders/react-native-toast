@@ -10,7 +10,6 @@
     "android:apk": "cd android && ./gradlew assembleRelease && cd .."
   },
   "dependencies": {
-    "@platformbuilders/helpers": "^0.8.0",
     "@platformbuilders/react-native-toast": "file:../src",
     "lodash": "^4.17.21",
     "numeral": "^2.0.6",

@@ -1946,11 +1946,6 @@
     eslint-plugin-react "^7.32.0"
     eslint-plugin-sonarjs "^0.18.0"
 
-"@platformbuilders/helpers@^0.8.0":
-  version "0.8.0"
-  resolved "https://npm.pkg.github.com/download/@platformbuilders/helpers/0.8.0/6916e1cbf5edbd73a0d52ba7aa0d7dd7ae039aa1#6916e1cbf5edbd73a0d52ba7aa0d7dd7ae039aa1"
-  integrity sha512-HVgFfPuC+jhVW9GnQYTj2M8S2FPgIg7FixjjQ0OneRSEJ2QXcKqcX4gtFen/mxjNadLBiIZVyluq4Mx+/AO5OA==
-
 "@pmmmwh/react-refresh-webpack-plugin@0.4.3":
   version "0.4.3"
   resolved "https://registry.yarnpkg.com/@pmmmwh/react-refresh-webpack-plugin/-/react-refresh-webpack-plugin-0.4.3.tgz#1eec460596d200c0236bf195b078a5d1df89b766"
