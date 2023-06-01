@@ -36,3 +36,9 @@ rollup.config.js
 tsconfig.json
 .lintstagedrc.json
 exampleDev
+sonar-project.properties
+rollup.config.mjs
+metro.config.js
+types/index.d.ts
+babel.config.js
+README.md
