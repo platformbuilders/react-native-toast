@@ -3,11 +3,11 @@
     "target": "ESNext",
     "module": "CommonJS",
     "lib": [
-      "ESNext",
+      "ESNext"
     ],
     "types": [
       "react",
-      "jest",
+      "jest"
     ],
     "jsx": "react",
     "declaration": true,
@@ -45,7 +45,6 @@
   ],
   "exclude": [
     "node_modules",
-    "dist",
-    "rollup.config.mjs"
+    "dist"
   ]
 }
