@@ -103,6 +103,10 @@ export const Toast: FC<Props> = ({ data, config }) => {
     }
   }, [toastHeight]);
 
+  let timeout: ReturnType<typeof setTimeout>;
+
+  const resetTimeout = () => clearTimeout(timeout);
+
   const resetToastValues = () => {
     setToast({
       title: undefined,
@@ -112,7 +116,10 @@ export const Toast: FC<Props> = ({ data, config }) => {
   };
 
   const dismissToast = () => {
-    const callback = () => resetToastValues();
+    const callback = () => {
+      resetToastValues();
+      resetTimeout();
+    };
 
     transitionY.value = withTiming(
       -toastHeight,
@@ -133,8 +140,8 @@ export const Toast: FC<Props> = ({ data, config }) => {
 
   const handleDismiss = () => {
     if (disabledAutoHide) {
-      const timeout = setTimeout(() => dismissToast(), data.duration);
-      return () => clearTimeout(timeout);
+      timeout = setTimeout(() => dismissToast(), data.duration);
+      return () => resetTimeout();
     }
 
     return () => {};
