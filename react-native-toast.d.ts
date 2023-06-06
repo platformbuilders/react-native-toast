@@ -13,4 +13,6 @@ declare module "@platformbuilders/react-native-toast" {
   export type PanGestureContextType = import('./src/Toast').PanGestureContextType;
 
   export type ToastConfig = import('./src/Toast').ToastConfig;
+
+  export function useToast(): ContextType;
 }
