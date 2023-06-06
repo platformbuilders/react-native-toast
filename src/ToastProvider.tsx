@@ -1,5 +1,6 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import { Toast, ToastConfigProps, ToastProps, ToastType } from './Toast';
+import ToastManager from './ToastManager';
 
 export interface ToastProviderProps {
   children: React.ReactNode;
@@ -40,6 +41,10 @@ export const ToastProvider = ({ children, config }: ToastProviderProps) => {
       message: toast.message,
     });
   };
+
+  useEffect(() => {
+    ToastManager.register(showToast);
+  }, []);
 
   return (
     <ToastContext.Provider value={{ showToast }}>

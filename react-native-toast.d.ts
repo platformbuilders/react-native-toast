@@ -17,6 +17,10 @@ declare module "@platformbuilders/react-native-toast" {
     duration?: number;
   };
 
+  export type ToastInstance = {
+    showToast: (options: ToastProps) => void;
+  };
+
   export type PanGestureContextType = {
     translateY: number;
   };
