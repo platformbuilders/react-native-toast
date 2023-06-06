@@ -21,6 +21,14 @@ declare module "@platformbuilders/react-native-toast" {
     showToast: (options: ToastProps) => void;
   };
 
+  export class ToastManager {
+    showError(message: string, title?: string, duration?: number): void;
+    showSuccess(message: string, title?: string, duration?: number): void;
+    showWarning(message: string, title?: string, duration?: number): void;
+    showCustom(message: string, title?: string, duration?: number): void;
+    register(showToast: (options: ToastProps) => void): void;
+  }
+
   export type PanGestureContextType = {
     translateY: number;
   };
