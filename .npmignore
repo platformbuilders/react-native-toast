@@ -37,8 +37,7 @@ tsconfig.json
 .lintstagedrc.json
 exampleDev
 sonar-project.properties
-rollup.config.mjs
+jest.config.js
 metro.config.js
-types/index.d.ts
 babel.config.js
 README.md

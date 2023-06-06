@@ -1,14 +1,15 @@
 {
   "name": "@platformbuilders/react-native-toast",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "author": "Platform Builders <apps@platformbuilders.io>",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/platformbuilders/template-hooks.git"
   },
+  "source": "src/index",
   "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "types": "react-native-toast.d.ts",
   "engines": {
     "node": ">=12",
     "npm": ">=5"
@@ -16,7 +17,7 @@
   "license": "ISC",
   "scripts": {
     "test": "jest --passWithNoTests",
-    "build": "tsc --project ./tsconfig.json",
+    "build": "rm -rf ./dist && tsc --project ./tsconfig.json",
     "prepare": "husky install",
     "pretty": "prettier --config ./.prettierrc.js --write \"src/**/*.{jsx,ts,tsx,json}\"",
     "lint": "tsc && eslint '*/**/*.{ts, tsx}' --fix"

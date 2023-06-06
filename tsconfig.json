@@ -1,13 +1,9 @@
 {
   "compilerOptions": {
     "target": "ESNext",
-    "module": "CommonJS",
+    "module": "ESNext",
     "lib": [
       "ESNext"
-    ],
-    "types": [
-      "react",
-      "jest"
     ],
     "jsx": "react",
     "declaration": true,
@@ -39,10 +35,7 @@
     "noEmit": false
   },
   "compileOnSave": true,
-  "include": [
-    "src/**/*",
-    "types/**/*"
-  ],
+  "include": ["src/**/*", "react-native-toast.d.ts"],
   "exclude": [
     "node_modules",
     "dist"

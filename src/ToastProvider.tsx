@@ -1,11 +1,14 @@
 import React, { createContext, useContext, useState } from 'react';
-import {
-  ContextType,
-  ToastProps,
-  ToastProviderProps,
-  ToastType,
-} from '../types/index';
-import { Toast } from './Toast';
+import { Toast, ToastConfigProps, ToastProps, ToastType } from './Toast';
+
+export interface ToastProviderProps {
+  children: React.ReactNode;
+  config?: ToastConfigProps;
+}
+
+export type ContextType = {
+  showToast(data: ToastProps): void;
+};
 
 const ToastContext = createContext<ContextType>({
   showToast: () => {},
