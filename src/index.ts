@@ -1,3 +1,3 @@
 export * from './Toast';
 export * from './ToastProvider';
-export { default as ToastManager } from './ToastManager';
+export { default as ToastManagerInstance } from './ToastManager';
