@@ -4,7 +4,16 @@ type ToastInstance = {
   showToast: (options: ToastProps) => void;
 };
 
-class ToastManager {
+interface IToastManager {
+  instance: ToastInstance;
+  register(showToast: (options: ToastProps) => void): void;
+  showError(message: string, title?: string, duration?: number): void;
+  showSuccess(message: string, title?: string, duration?: number): void;
+  showWarning(message: string, title?: string, duration?: number): void;
+  showCustom(message: string, title?: string, duration?: number): void;
+}
+
+class ToastManager implements IToastManager {
   instance: ToastInstance = {
     showToast: () => {},
   };

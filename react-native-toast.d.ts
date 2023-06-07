@@ -82,4 +82,17 @@ declare module "@platformbuilders/react-native-toast" {
   export function useToast(): ContextType;
 
   export function ToastProvider({ children, config }: ToastProviderProps): React.JSX.Element
+
+  interface IToastManager {
+    instance: ToastInstance;
+    register(showToast: (options: ToastProps) => void): void;
+    showError(message: string, title?: string, duration?: number): void;
+    showSuccess(message: string, title?: string, duration?: number): void;
+    showWarning(message: string, title?: string, duration?: number): void;
+    showCustom(message: string, title?: string, duration?: number): void;
+  }
+
+  class ToastManager implements IToastManager {}
+
+  export const ToastManager: IToastManager = new ToastManager();
 }
