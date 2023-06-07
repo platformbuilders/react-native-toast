@@ -2,7 +2,7 @@ import ToastManagerInstance from './ToastManager';
 
 const showSuccess = ToastManagerInstance.showSuccess;
 const showError = ToastManagerInstance.showError;
-const showCustom = ToastManagerInstance.showError;
+const showCustom = ToastManagerInstance.showCustom;
 const showWarning = ToastManagerInstance.showWarning;
 
 export * from './Toast';

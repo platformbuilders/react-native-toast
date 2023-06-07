@@ -4,7 +4,7 @@ declare module "@platformbuilders/react-native-toast" {
     config?: ToastConfigProps;
   }
 
-  export type ToastType = 'success' | 'alert' | 'warning' | 'custom';
+  export type ToastType = 'success' | 'warning' | 'error' | 'custom';
 
   export type ContextType = {
     showToast(data: ToastProps): void;
@@ -30,8 +30,8 @@ declare module "@platformbuilders/react-native-toast" {
     textColor?: string;
     backgroundColor?: {
       success?: string;
-      alert?: string;
       warning?: string;
+      error?: string;
       custom?: string;
     };
     icon: {
@@ -40,12 +40,12 @@ declare module "@platformbuilders/react-native-toast" {
         height?: number;
         width?: number;
       };
-      alert: {
+      warning: {
         icon?: ImageSourcePropType;
         height?: number;
         width?: number;
       };
-      warning: {
+      error: {
         icon?: ImageSourcePropType;
         height?: number;
         width?: number;
@@ -58,14 +58,14 @@ declare module "@platformbuilders/react-native-toast" {
     };
     autoHide: {
       success: boolean;
-      alert: boolean;
       warning: boolean;
+      error: boolean;
       custom: boolean;
     };
     showCloseButton: {
       success: boolean;
-      alert: boolean;
       warning: boolean;
+      error: boolean;
       custom: boolean;
     };
     showIcon?: boolean;

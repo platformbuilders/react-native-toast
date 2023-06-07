@@ -7,7 +7,6 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {toastConfig} from './src/config/toastConfig'
 
-
 export const Toast = () => {
   const {showToast} = useToast();
 
@@ -19,18 +18,18 @@ export const Toast = () => {
         type: 'success',
       });
     }
-    if (toast === 'alert') {
+    if (toast === 'warning') {
       showToast({
         title: 'Alerta',
         message: 'Toast de notificação de Alerta',
-        type: 'alert',
+        type: 'warning',
       });
     }
-    if (toast === 'warning') {
+    if (toast === 'error') {
       showToast({
         title: 'Erro',
         message: 'Toast de notificação de Erro',
-        type: 'warning',
+        type: 'error',
       });
     }
     if (toast === 'custom') {
@@ -47,11 +46,11 @@ export const Toast = () => {
       <TouchableOpacity style={styles.button} onPress={() => toast('success')}>
         <Text>Sucesso</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={() => toast('alert')}>
-        <Text>Alerta</Text>
-      </TouchableOpacity>
       <TouchableOpacity style={styles.button} onPress={() => toast('warning')}>
         <Text>Warning</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={() => toast('error')}>
+        <Text>Error</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.button} onPress={() => toast('custom')}>
         <Text>Custom</Text>
