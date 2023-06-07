@@ -18,45 +18,45 @@ class ToastManager implements IToastManager {
     showToast: () => {},
   };
 
-  register(showToast: (options: ToastProps) => void) {
+  register = (showToast: (options: ToastProps) => void) => {
     this.instance.showToast = showToast;
-  }
+  };
 
-  showError(message: string, title?: string, duration?: number) {
-    this.instance.showToast({
-      title,
-      message,
-      duration,
-      type: 'alert',
-    });
-  }
-
-  showSuccess(message: string, title?: string, duration?: number) {
-    this.instance.showToast({
-      title,
-      message,
-      duration,
-      type: 'success',
-    });
-  }
-
-  showWarning(message: string, title?: string, duration?: number) {
+  showWarning = (message: string, title?: string, duration?: number) => {
     this.instance.showToast({
       title,
       message,
       duration,
       type: 'warning',
     });
-  }
+  };
 
-  showCustom(message: string, title?: string, duration?: number) {
+  showSuccess = (message: string, title?: string, duration?: number) => {
+    this.instance.showToast({
+      title,
+      message,
+      duration,
+      type: 'success',
+    });
+  };
+
+  showError = (message: string, title?: string, duration?: number) => {
+    this.instance.showToast({
+      title,
+      message,
+      duration,
+      type: 'error',
+    });
+  };
+
+  showCustom = (message: string, title?: string, duration?: number) => {
     this.instance.showToast({
       title,
       message,
       duration,
       type: 'custom',
     });
-  }
+  };
 }
 
 export default new ToastManager();

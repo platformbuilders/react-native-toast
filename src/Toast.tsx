@@ -29,7 +29,7 @@ export type PanGestureContextType = {
   translateY: number;
 };
 
-export type ToastType = 'success' | 'alert' | 'warning' | 'custom';
+export type ToastType = 'success' | 'warning' | 'error' | 'custom';
 
 export type ToastProps = {
   title?: string | undefined;
@@ -43,8 +43,8 @@ export type ToastConfig = {
   textColor?: string;
   backgroundColor?: {
     success?: string;
-    alert?: string;
     warning?: string;
+    error?: string;
     custom?: string;
   };
   icon: {
@@ -53,12 +53,12 @@ export type ToastConfig = {
       height?: number;
       width?: number;
     };
-    alert: {
+    warning: {
       icon?: ImageSourcePropType;
       height?: number;
       width?: number;
     };
-    warning: {
+    error: {
       icon?: ImageSourcePropType;
       height?: number;
       width?: number;
@@ -71,14 +71,14 @@ export type ToastConfig = {
   };
   autoHide: {
     success: boolean;
-    alert: boolean;
     warning: boolean;
+    error: boolean;
     custom: boolean;
   };
   showCloseButton: {
     success: boolean;
-    alert: boolean;
     warning: boolean;
+    error: boolean;
     custom: boolean;
   };
   showIcon?: boolean;
@@ -89,8 +89,8 @@ export type ToastConfigProps = {
   textColor?: string;
   backgroundColor?: {
     success?: string;
-    alert?: string;
     warning?: string;
+    error?: string;
     custom?: string;
   };
   icon?: {
@@ -99,12 +99,12 @@ export type ToastConfigProps = {
       height?: number;
       width?: number;
     };
-    alert?: {
+    warning?: {
       icon?: ImageSourcePropType;
       height?: number;
       width?: number;
     };
-    warning?: {
+    error?: {
       icon?: ImageSourcePropType;
       height?: number;
       width?: number;
@@ -117,14 +117,14 @@ export type ToastConfigProps = {
   };
   autoHide?: {
     success?: boolean;
-    alert?: boolean;
     warning?: boolean;
+    error?: boolean;
     custom?: boolean;
   };
   showCloseButton?: {
     success?: boolean;
-    alert?: boolean;
     warning?: boolean;
+    error?: boolean;
     custom?: boolean;
   };
   showIcon?: boolean;
@@ -153,15 +153,15 @@ export const Toast: FC<Props> = ({ data, config }) => {
 
   const handleBackgroundColor = () => {
     const success = '#22bb33';
-    const alert = '#f0ad4e';
-    const warning = '#bb2124';
+    const warning = '#f0ad4e';
+    const error = '#bb2124';
     const custom = '#000';
 
     if (data.type === 'success')
       return config?.backgroundColor?.success || success;
-    if (data.type === 'alert') return config?.backgroundColor?.alert || alert;
     if (data.type === 'warning')
       return config?.backgroundColor?.warning || warning;
+    if (data.type === 'error') return config?.backgroundColor?.error || error;
     if (data.type === 'custom')
       return config?.backgroundColor?.custom || custom;
     return config?.backgroundColor?.success || success;
@@ -173,15 +173,15 @@ export const Toast: FC<Props> = ({ data, config }) => {
       width: config?.icon?.success?.width,
       icon: config?.icon?.success?.icon,
     }),
-    alert: () => ({
-      height: config?.icon?.alert?.height,
-      width: config?.icon?.alert?.width,
-      icon: config?.icon?.alert?.icon,
-    }),
     warning: () => ({
       height: config?.icon?.warning?.height,
       width: config?.icon?.warning?.width,
       icon: config?.icon?.warning?.icon,
+    }),
+    error: () => ({
+      height: config?.icon?.error?.height,
+      width: config?.icon?.error?.width,
+      icon: config?.icon?.error?.icon,
     }),
     custom: () => ({
       height: config?.icon?.custom?.height,

@@ -61,14 +61,14 @@ export const ToastProvider = ({ children, config }: ToastProviderProps) => {
             textColor: config?.textColor,
             backgroundColor: {
               success: config?.backgroundColor?.success,
-              alert: config?.backgroundColor?.alert,
               warning: config?.backgroundColor?.warning,
+              error: config?.backgroundColor?.error,
               custom: config?.backgroundColor?.custom,
             },
             autoHide: {
               success: config?.autoHide?.success ?? true,
-              alert: config?.autoHide?.alert ?? true,
               warning: config?.autoHide?.warning ?? true,
+              error: config?.autoHide?.error ?? true,
               custom: config?.autoHide?.custom ?? true,
             },
             icon: {
@@ -77,15 +77,15 @@ export const ToastProvider = ({ children, config }: ToastProviderProps) => {
                 width: config?.icon?.success?.width,
                 height: config?.icon?.success?.height,
               },
+              error: {
+                icon: config?.icon?.error?.icon,
+                width: config?.icon?.error?.width,
+                height: config?.icon?.error?.height,
+              },
               warning: {
                 icon: config?.icon?.warning?.icon,
                 width: config?.icon?.warning?.width,
                 height: config?.icon?.warning?.height,
-              },
-              alert: {
-                icon: config?.icon?.alert?.icon,
-                width: config?.icon?.alert?.width,
-                height: config?.icon?.alert?.height,
               },
               custom: {
                 icon: config?.icon?.custom?.icon,
@@ -95,8 +95,8 @@ export const ToastProvider = ({ children, config }: ToastProviderProps) => {
             },
             showCloseButton: {
               success: config?.showCloseButton?.success ?? false,
-              alert: config?.showCloseButton?.alert ?? false,
               warning: config?.showCloseButton?.warning ?? false,
+              error: config?.showCloseButton?.error ?? false,
               custom: config?.showCloseButton?.custom ?? false,
             },
             showIcon: config?.showIcon,
