@@ -94,5 +94,5 @@ declare module "@platformbuilders/react-native-toast" {
 
   class ToastManager implements IToastManager {}
 
-  export const ToastManager: IToastManager = new ToastManager();
+  export const ToastManagerInstance: IToastManager = new ToastManager();
 }
