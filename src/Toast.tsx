@@ -1,3 +1,4 @@
+/* eslint-disable sonarjs/cognitive-complexity */
 import React, { FC, useEffect, useState } from 'react';
 import { ImageSourcePropType, LayoutChangeEvent } from 'react-native';
 import {
@@ -297,7 +298,7 @@ export const Toast: FC<Props> = ({ data, config }) => {
     },
   });
 
-  return (
+  return toast?.message?.length > 0 ? (
     <PanGestureHandler onGestureEvent={panGestureEvent}>
       <Container
         onLayout={handleViewLayout}
@@ -341,5 +342,5 @@ export const Toast: FC<Props> = ({ data, config }) => {
         )}
       </Container>
     </PanGestureHandler>
-  );
+  ) : null;
 };

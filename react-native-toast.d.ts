@@ -21,14 +21,6 @@ declare module "@platformbuilders/react-native-toast" {
     showToast: (options: ToastProps) => void;
   };
 
-  export class ToastManager {
-    showError(message: string, title?: string, duration?: number): void;
-    showSuccess(message: string, title?: string, duration?: number): void;
-    showWarning(message: string, title?: string, duration?: number): void;
-    showCustom(message: string, title?: string, duration?: number): void;
-    register(showToast: (options: ToastProps) => void): void;
-  }
-
   export type PanGestureContextType = {
     translateY: number;
   };
@@ -83,16 +75,8 @@ declare module "@platformbuilders/react-native-toast" {
 
   export function ToastProvider({ children, config }: ToastProviderProps): React.JSX.Element
 
-  interface IToastManager {
-    instance: ToastInstance;
-    register(showToast: (options: ToastProps) => void): void;
-    showError(message: string, title?: string, duration?: number): void;
-    showSuccess(message: string, title?: string, duration?: number): void;
-    showWarning(message: string, title?: string, duration?: number): void;
-    showCustom(message: string, title?: string, duration?: number): void;
-  }
-
-  class ToastManager implements IToastManager {}
-
-  export const ToastManagerInstance: IToastManager = new ToastManager();
+  export function showError(message: string, title?: string, duration?: number): void;
+  export function showSuccess(message: string, title?: string, duration?: number): void;
+  export function showWarning(message: string, title?: string, duration?: number): void;
+  export function showCustom(message: string, title?: string, duration?: number): void;
 }
