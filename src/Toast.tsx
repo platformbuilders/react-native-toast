@@ -190,7 +190,7 @@ export const Toast: FC<Props> = ({ data, config }) => {
     }),
   };
 
-  const showIcon = !!icon[toast.type]()?.icon;
+  const showIcon = !!config?.showIcon && !!icon[toast.type]()?.icon;
 
   const handleViewLayout = (event: LayoutChangeEvent) => {
     setToastHeight(event.nativeEvent.layout.height);
