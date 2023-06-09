@@ -8,11 +8,17 @@ export interface ToastProviderProps {
 }
 
 export type ContextType = {
-  showToast(data: ToastProps): void;
+  showError(message: string, title?: string, duration?: number): void;
+  showSuccess(message: string, title?: string, duration?: number): void;
+  showWarning(message: string, title?: string, duration?: number): void;
+  showCustom(message: string, title?: string, duration?: number): void;
 };
 
 const ToastContext = createContext<ContextType>({
-  showToast: () => {},
+  showError: () => {},
+  showSuccess: () => {},
+  showWarning: () => {},
+  showCustom: () => {},
 });
 
 export const ToastProvider = ({ children, config }: ToastProviderProps) => {
@@ -42,12 +48,50 @@ export const ToastProvider = ({ children, config }: ToastProviderProps) => {
     });
   };
 
+  const showWarning = (message: string, title?: string, duration?: number) => {
+    setToast({
+      title,
+      message,
+      duration,
+      type: 'warning',
+    });
+  };
+
+  const showSuccess = (message: string, title?: string, duration?: number) => {
+    setToast({
+      title,
+      message,
+      duration,
+      type: 'success',
+    });
+  };
+
+  const showError = (message: string, title?: string, duration?: number) => {
+    setToast({
+      title,
+      message,
+      duration,
+      type: 'error',
+    });
+  };
+
+  const showCustom = (message: string, title?: string, duration?: number) => {
+    setToast({
+      title,
+      message,
+      duration,
+      type: 'custom',
+    });
+  };
+
   useEffect(() => {
     ToastManager.register(showToast);
   }, []);
 
   return (
-    <ToastContext.Provider value={{ showToast }}>
+    <ToastContext.Provider
+      value={{ showWarning, showSuccess, showError, showCustom }}
+    >
       {hasMessage && (
         <Toast
           data={{

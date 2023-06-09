@@ -7,7 +7,10 @@ declare module "@platformbuilders/react-native-toast" {
   export type ToastType = 'success' | 'warning' | 'error' | 'custom';
 
   export type ContextType = {
-    showToast(data: ToastProps): void;
+    showError(message: string, title?: string, duration?: number): void;
+    showSuccess(message: string, title?: string, duration?: number): void;
+    showWarning(message: string, title?: string, duration?: number): void;
+    showCustom(message: string, title?: string, duration?: number): void;
   };
 
   export type ToastProps = {
@@ -15,10 +18,6 @@ declare module "@platformbuilders/react-native-toast" {
     message: string;
     type: ToastType;
     duration?: number;
-  };
-
-  export type ToastInstance = {
-    showToast: (options: ToastProps) => void;
   };
 
   export type PanGestureContextType = {
