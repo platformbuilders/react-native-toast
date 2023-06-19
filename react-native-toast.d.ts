@@ -24,7 +24,7 @@ declare module "@platformbuilders/react-native-toast" {
     translateY: number;
   };
 
-  export type ToastConfig = {
+  export type ToastConfigProps = {
     fontFamily?: string;
     textColor?: string;
     backgroundColor?: {
@@ -33,39 +33,39 @@ declare module "@platformbuilders/react-native-toast" {
       error?: string;
       custom?: string;
     };
-    icon: {
-      success: {
-        icon?: ImageSourcePropType;
+    icon?: {
+      success?: {
+        icon: ImageSourcePropType;
         height?: number;
         width?: number;
       };
-      warning: {
-        icon?: ImageSourcePropType;
+      warning?: {
+        icon: ImageSourcePropType;
         height?: number;
         width?: number;
       };
-      error: {
-        icon?: ImageSourcePropType;
+      error?: {
+        icon: ImageSourcePropType;
         height?: number;
         width?: number;
       };
-      custom: {
-        icon?: ImageSourcePropType;
+      custom?: {
+        icon: ImageSourcePropType;
         height?: number;
         width?: number;
       };
     };
-    autoHide: {
-      success: boolean;
-      warning: boolean;
-      error: boolean;
-      custom: boolean;
+    autoHide?: {
+      success?: boolean;
+      warning?: boolean;
+      error?: boolean;
+      custom?: boolean;
     };
-    showCloseButton: {
-      success: boolean;
-      warning: boolean;
-      error: boolean;
-      custom: boolean;
+    showCloseButton?: {
+      success?: boolean;
+      warning?: boolean;
+      error?: boolean;
+      custom?: boolean;
     };
     showIcon?: boolean;
   };
