@@ -95,22 +95,22 @@ export type ToastConfigProps = {
   };
   icon?: {
     success?: {
-      icon?: ImageSourcePropType;
+      icon: ImageSourcePropType;
       height?: number;
       width?: number;
     };
     warning?: {
-      icon?: ImageSourcePropType;
+      icon: ImageSourcePropType;
       height?: number;
       width?: number;
     };
     error?: {
-      icon?: ImageSourcePropType;
+      icon: ImageSourcePropType;
       height?: number;
       width?: number;
     };
     custom?: {
-      icon?: ImageSourcePropType;
+      icon: ImageSourcePropType;
       height?: number;
       width?: number;
     };
