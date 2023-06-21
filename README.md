@@ -18,6 +18,7 @@ yarn add @platformbuilders/react-native-toast
 
 ```typescript
 import { ToastProvider } from '@platformbuilders/react-native-toast';
+import { iconSuccess, iconWarning, iconError, iconCustom } from '~/assets/images';
 
 const Provider: FC<PropsWithChildren> = ({ children }) => {
   const { ui } = useStores();
@@ -29,10 +30,26 @@ const Provider: FC<PropsWithChildren> = ({ children }) => {
       warning: ui?.theme?.warning.main as unknown as string,
       danger: ui?.theme?.danger.main as unknown as string,
     },
-    icon: {
-      custom: {
-        height: 22,
-        width: 22,
+    icon?: {
+      success?: {
+        icon?: iconSuccess,
+        height?: 24,
+        width?: 24,
+      },
+      warning?: {
+        icon?: iconWarning,
+        height?: 24,
+        width?: 24,
+      },
+      error?: {
+        icon?: iconError,
+        height?: 24,
+        width?: 24,
+      },
+      custom?: {
+        icon?: iconCustom,
+        height?: 24,
+        width?: 24,
       },
     },
     autoHide: {
@@ -52,7 +69,7 @@ const Provider: FC<PropsWithChildren> = ({ children }) => {
 
 ```typescript
 import { useEffect } from 'react';
-import { ToastProvider, showSuccess } from '@platformbuilders/react-native-toast';
+import { showSuccess } from '@platformbuilders/react-native-toast';
 
 const FunctionalComponent = () => {
   const { showSuccess } = useToast();
