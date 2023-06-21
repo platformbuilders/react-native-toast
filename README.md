@@ -69,7 +69,7 @@ const Provider: FC<PropsWithChildren> = ({ children }) => {
 
 ```typescript
 import { useEffect } from 'react';
-import { showSuccess } from '@platformbuilders/react-native-toast';
+import { useToast } from '@platformbuilders/react-native-toast';
 
 const FunctionalComponent = () => {
   const { showSuccess } = useToast();
