@@ -1,4 +1,4 @@
-declare module "@platformbuilders/react-native-toast" {
+declare module '@platformbuilders/react-native-toast' {
   export interface ToastProviderProps {
     children: React.ReactNode;
     config?: ToastConfigProps;
@@ -24,14 +24,26 @@ declare module "@platformbuilders/react-native-toast" {
     translateY: number;
   };
 
+  export type OptionsToast = {
+    success?: string;
+    warning?: string;
+    error?: string;
+    custom?: string;
+  };
+
   export type ToastConfigProps = {
+    containerStyle?: Record<string, unknown>;
     fontFamily?: string;
-    textColor?: string;
-    backgroundColor?: {
-      success?: string;
-      warning?: string;
-      error?: string;
-      custom?: string;
+    textColor?: OptionsToast | string;
+    titleSize?: number;
+    messageSize?: number;
+    backgroundColor?: OptionsToast;
+    closeButtonText?: string;
+    customIcon?: {
+      success?: React.ReactElement;
+      warning?: React.ReactElement;
+      error?: React.ReactElement;
+      custom?: React.ReactElement;
     };
     icon?: {
       success?: {
@@ -72,10 +84,29 @@ declare module "@platformbuilders/react-native-toast" {
 
   export function useToast(): ContextType;
 
-  export function ToastProvider({ children, config }: ToastProviderProps): React.JSX.Element
+  export function ToastProvider({
+    children,
+    config,
+  }: ToastProviderProps): React.JSX.Element;
 
-  export function showError(message: string, title?: string, duration?: number): void;
-  export function showSuccess(message: string, title?: string, duration?: number): void;
-  export function showWarning(message: string, title?: string, duration?: number): void;
-  export function showCustom(message: string, title?: string, duration?: number): void;
+  export function showError(
+    message: string,
+    title?: string,
+    duration?: number,
+  ): void;
+  export function showSuccess(
+    message: string,
+    title?: string,
+    duration?: number,
+  ): void;
+  export function showWarning(
+    message: string,
+    title?: string,
+    duration?: number,
+  ): void;
+  export function showCustom(
+    message: string,
+    title?: string,
+    duration?: number,
+  ): void;
 }
