@@ -15,6 +15,7 @@ interface ContainerProps {
 interface TextProps {
   fontFamily?: string;
   textColor?: string;
+  size?: number;
 }
 
 interface IconProps {
@@ -39,10 +40,11 @@ export const Container = styled(Animated.View)<ContainerProps>`
 export const TextContainer = styled.View`
   flex: 1;
   padding-right: 14px;
+  padding-left: 14px;
 `;
 
 export const Title = styled.Text<TextProps>`
-  font-size: 16px;
+  font-size: ${({ size }) => size ?? 16}px;
   font-weight: ${fontWeight};
   margin-bottom: 12px;
   font-family: ${({ fontFamily }) => fontFamily ?? fontDefault};
@@ -50,7 +52,7 @@ export const Title = styled.Text<TextProps>`
 `;
 
 export const Message = styled.Text<TextProps>`
-  font-size: 15px;
+  font-size: ${({ size }) => size ?? 15}px;
   font-family: ${({ fontFamily }) => fontFamily ?? fontDefault};
   color: ${({ textColor }) => textColor ?? '#fff'};
   margin-bottom: 10px;
@@ -75,7 +77,7 @@ export const CloseButton = styled.Pressable.attrs({
 `;
 
 export const CloseText = styled.Text<TextProps>`
-  font-size: 13px;
+  font-size: 18px;
   font-family: ${({ fontFamily }) => fontFamily ?? fontDefault};
   color: ${({ textColor }) => textColor ?? '#fff'};
 `;

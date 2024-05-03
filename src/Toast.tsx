@@ -1,6 +1,10 @@
 /* eslint-disable sonarjs/cognitive-complexity */
 import React, { FC, useEffect, useState } from 'react';
-import { ImageSourcePropType, LayoutChangeEvent } from 'react-native';
+import {
+  ImageSourcePropType,
+  LayoutChangeEvent,
+  ViewStyle,
+} from 'react-native';
 import {
   PanGestureHandler,
   PanGestureHandlerGestureEvent,
@@ -31,6 +35,13 @@ export type PanGestureContextType = {
 
 export type ToastType = 'success' | 'warning' | 'error' | 'custom';
 
+export type OptionsToast = {
+  success?: string;
+  warning?: string;
+  error?: string;
+  custom?: string;
+};
+
 export type ToastProps = {
   title?: string | undefined;
   message: string;
@@ -39,13 +50,18 @@ export type ToastProps = {
 };
 
 export type ToastConfig = {
+  containerStyle?: ViewStyle;
   fontFamily?: string;
-  textColor?: string;
-  backgroundColor?: {
-    success?: string;
-    warning?: string;
-    error?: string;
-    custom?: string;
+  textColor?: OptionsToast | string;
+  titleSize?: number;
+  messageSize?: number;
+  closeButtonText: string;
+  backgroundColor?: OptionsToast;
+  customIcon: {
+    success?: React.ReactElement;
+    warning?: React.ReactElement;
+    error?: React.ReactElement;
+    custom?: React.ReactElement;
   };
   icon: {
     success: {
@@ -85,13 +101,18 @@ export type ToastConfig = {
 };
 
 export type ToastConfigProps = {
+  containerStyle?: ViewStyle;
   fontFamily?: string;
-  textColor?: string;
-  backgroundColor?: {
-    success?: string;
-    warning?: string;
-    error?: string;
-    custom?: string;
+  textColor?: OptionsToast | string;
+  titleSize?: number;
+  messageSize?: number;
+  closeButtonText?: string;
+  backgroundColor?: OptionsToast;
+  customIcon?: {
+    success?: React.ReactElement;
+    warning?: React.ReactElement;
+    error?: React.ReactElement;
+    custom?: React.ReactElement;
   };
   icon?: {
     success?: {
@@ -305,38 +326,58 @@ export const Toast: FC<Props> = ({ data, config }) => {
         backgroundColor={handleBackgroundColor()}
         paddingTop={insets.top}
         hasTitle={hasTitle}
-        style={toastAnimatedStyle}
+        style={[config.containerStyle, toastAnimatedStyle]}
       >
-        {showIcon && (
+        {showIcon && icon[toast.type]().icon && (
           <Icon
             source={icon[toast.type]().icon!}
             width={icon[toast.type]().width}
             height={icon[toast.type]().height}
           />
         )}
+
+        {config?.showIcon &&
+          !!config?.customIcon[toast.type] &&
+          config?.customIcon[toast.type]}
+
         <TextContainer>
           {!!data.title && (
             <Title
               fontFamily={config?.fontFamily}
-              textColor={config?.textColor}
+              textColor={
+                typeof config?.textColor === 'string'
+                  ? config?.textColor
+                  : config?.textColor?.[data.type]
+              }
+              size={config?.titleSize}
             >
               {data.title}
             </Title>
           )}
           <Message
             fontFamily={config?.fontFamily}
-            textColor={config?.textColor}
+            textColor={
+              typeof config?.textColor === 'string'
+                ? config?.textColor
+                : config?.textColor?.[data.type]
+            }
+            size={config?.messageSize}
           >
             {data?.message}
           </Message>
         </TextContainer>
+
         {showCloseButton && (
           <CloseButton onPress={dismissToast}>
             <CloseText
               fontFamily={config?.fontFamily}
-              textColor={config?.textColor}
+              textColor={
+                typeof config?.textColor === 'string'
+                  ? config?.textColor
+                  : config?.textColor?.[data.type]
+              }
             >
-              Fechar
+              {config.closeButtonText}
             </CloseText>
           </CloseButton>
         )}
