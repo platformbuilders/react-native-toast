@@ -101,6 +101,11 @@ export const ToastProvider = ({ children, config }: ToastProviderProps) => {
             duration: toast.duration,
           }}
           config={{
+            closeButtonText: config?.closeButtonText || 'Fechar',
+            containerStyle: config?.containerStyle,
+            messageSize: config?.messageSize,
+            titleSize: config?.titleSize,
+            customIcon: config?.customIcon || {},
             fontFamily: config?.fontFamily,
             textColor: config?.textColor,
             backgroundColor: {
