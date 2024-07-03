@@ -18,7 +18,6 @@ import {
   withSpring,
   withTiming,
 } from 'react-native-reanimated';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import {
   CloseButton,
   CloseText,
@@ -157,34 +156,32 @@ type Props = {
   config: ToastConfig;
 };
 
-export const Toast: FC<Props> = ({ data, config }) => {
-  const insets = useSafeAreaInsets();
-
+export const Toast: FC<Props> = ({
+  data: { message, type, duration = 2500, title },
+  config,
+}) => {
   const [toastHeight, setToastHeight] = useState(0);
+
   const [toast, setToast] = useState<ToastProps>({
     title: undefined,
     message: '',
     type: 'success',
   });
 
-  const showCloseButton = config.showCloseButton[data.type];
-  const disabledAutoHide = config.autoHide[data.type];
+  const showCloseButton = config.showCloseButton[type];
+  const disabledAutoHide = config.autoHide[type];
   const disabledGesture = !disabledAutoHide;
-  const hasTitle = !!data.title;
 
   const handleBackgroundColor = () => {
-    const success = '#22bb33';
+    const success = '#33c659';
     const warning = '#f0ad4e';
-    const error = '#bb2124';
-    const custom = '#000';
+    const error = '#ff726b';
+    const custom = '#4794ff';
 
-    if (data.type === 'success')
-      return config?.backgroundColor?.success || success;
-    if (data.type === 'warning')
-      return config?.backgroundColor?.warning || warning;
-    if (data.type === 'error') return config?.backgroundColor?.error || error;
-    if (data.type === 'custom')
-      return config?.backgroundColor?.custom || custom;
+    if (type === 'success') return config?.backgroundColor?.success || success;
+    if (type === 'warning') return config?.backgroundColor?.warning || warning;
+    if (type === 'error') return config?.backgroundColor?.error || error;
+    if (type === 'custom') return config?.backgroundColor?.custom || custom;
     return config?.backgroundColor?.success || success;
   };
 
@@ -266,7 +263,7 @@ export const Toast: FC<Props> = ({ data, config }) => {
 
   const handleDismiss = () => {
     if (disabledAutoHide) {
-      timeout = setTimeout(() => dismissToast(), data.duration);
+      timeout = setTimeout(() => dismissToast(), duration);
       return () => resetTimeout();
     }
 
@@ -275,7 +272,6 @@ export const Toast: FC<Props> = ({ data, config }) => {
 
   const handleAnimation = () => {
     showToast();
-
     handleDismiss();
   };
 
@@ -284,14 +280,14 @@ export const Toast: FC<Props> = ({ data, config }) => {
   }, [toast.message, toastHeight]);
 
   useEffect(() => {
-    if (!!data.message?.length) {
+    if (!!message) {
       setToast({
-        title: data.title,
-        message: data.message,
-        type: data.type,
+        title: title,
+        message: message,
+        type: type,
       });
     }
-  }, [data]);
+  }, [message]);
 
   const panGestureEvent = useAnimatedGestureHandler<
     PanGestureHandlerGestureEvent,
@@ -324,8 +320,6 @@ export const Toast: FC<Props> = ({ data, config }) => {
       <Container
         onLayout={handleViewLayout}
         backgroundColor={handleBackgroundColor()}
-        paddingTop={insets.top}
-        hasTitle={hasTitle}
         style={[config.containerStyle, toastAnimatedStyle]}
       >
         {showIcon && icon[toast.type]().icon && (
@@ -341,30 +335,33 @@ export const Toast: FC<Props> = ({ data, config }) => {
           config?.customIcon[toast.type]}
 
         <TextContainer>
-          {!!data.title && (
+          {!!title && (
             <Title
               fontFamily={config?.fontFamily}
               textColor={
                 typeof config?.textColor === 'string'
                   ? config?.textColor
-                  : config?.textColor?.[data.type]
+                  : config?.textColor?.[type]
               }
               size={config?.titleSize}
             >
-              {data.title}
+              {title?.trim()}
             </Title>
           )}
-          <Message
-            fontFamily={config?.fontFamily}
-            textColor={
-              typeof config?.textColor === 'string'
-                ? config?.textColor
-                : config?.textColor?.[data.type]
-            }
-            size={config?.messageSize}
-          >
-            {data?.message}
-          </Message>
+
+          {message && (
+            <Message
+              fontFamily={config?.fontFamily}
+              textColor={
+                typeof config?.textColor === 'string'
+                  ? config?.textColor
+                  : config?.textColor?.[type]
+              }
+              size={config?.messageSize}
+            >
+              {message?.trim()}
+            </Message>
+          )}
         </TextContainer>
 
         {showCloseButton && (
@@ -374,10 +371,10 @@ export const Toast: FC<Props> = ({ data, config }) => {
               textColor={
                 typeof config?.textColor === 'string'
                   ? config?.textColor
-                  : config?.textColor?.[data.type]
+                  : config?.textColor?.[type]
               }
             >
-              {config.closeButtonText}
+              {config.closeButtonText?.trim()}
             </CloseText>
           </CloseButton>
         )}

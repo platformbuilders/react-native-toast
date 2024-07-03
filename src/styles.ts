@@ -4,12 +4,9 @@ import styled from 'styled-components/native';
 
 const fontDefault = Platform.OS === 'android' ? 'Roboto' : 'Helvetica';
 const fontWeight = Platform.OS === 'android' ? 'bold' : 500;
-const handlePaddingTop = (hasTitle: boolean) => (hasTitle ? 12 : 18);
 
 interface ContainerProps {
   backgroundColor: string;
-  paddingTop: number;
-  hasTitle: boolean;
 }
 
 interface TextProps {
@@ -24,38 +21,39 @@ interface IconProps {
 }
 
 export const Container = styled(Animated.View)<ContainerProps>`
-  flex-direction: row;
+  width: 95%;
+  min-height: 100px;
   position: absolute;
-  top: 0;
+  top: 20px;
   z-index: 100;
   elevation: 10;
 
-  width: 100%;
   background-color: ${({ backgroundColor }) => backgroundColor};
-  padding-top: ${({ paddingTop, hasTitle }) =>
-    paddingTop + handlePaddingTop(hasTitle)}px;
-  padding-left: 16px;
+  flex-direction: row;
+  padding: 8px;
+  border-radius: 10px;
+  align-self: center;
+  align-items: center;
 `;
 
 export const TextContainer = styled.View`
   flex: 1;
-  padding-right: 14px;
-  padding-left: 14px;
+  padding-right: 8px;
+  padding-left: 8px;
 `;
 
 export const Title = styled.Text<TextProps>`
-  font-size: ${({ size }) => size ?? 16}px;
+  font-size: ${({ size }) => size ?? 20}px;
   font-weight: ${fontWeight};
-  margin-bottom: 12px;
   font-family: ${({ fontFamily }) => fontFamily ?? fontDefault};
   color: ${({ textColor }) => textColor ?? '#fff'};
+  margin-bottom: 12px;
 `;
 
 export const Message = styled.Text<TextProps>`
-  font-size: ${({ size }) => size ?? 15}px;
+  font-size: ${({ size }) => size ?? 18}px;
   font-family: ${({ fontFamily }) => fontFamily ?? fontDefault};
   color: ${({ textColor }) => textColor ?? '#fff'};
-  margin-bottom: 10px;
 `;
 
 export const Icon = styled.Image<IconProps>`
@@ -72,8 +70,11 @@ export const CloseButton = styled.Pressable.attrs({
     left: 14,
   },
 })`
+  max-width: 120px;
   align-self: center;
-  padding-right: 16px;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 `;
 
 export const CloseText = styled.Text<TextProps>`
