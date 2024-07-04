@@ -156,10 +156,7 @@ type Props = {
   config: ToastConfig;
 };
 
-export const Toast: FC<Props> = ({
-  data: { message, type, duration = 2500, title },
-  config,
-}) => {
+export const Toast: FC<Props> = ({ data, config }) => {
   const [toastHeight, setToastHeight] = useState(0);
 
   const [toast, setToast] = useState<ToastProps>({
@@ -168,8 +165,8 @@ export const Toast: FC<Props> = ({
     type: 'success',
   });
 
-  const showCloseButton = config.showCloseButton[type];
-  const disabledAutoHide = config.autoHide[type];
+  const showCloseButton = config.showCloseButton[data.type];
+  const disabledAutoHide = config.autoHide[data.type];
   const disabledGesture = !disabledAutoHide;
 
   const handleBackgroundColor = () => {
@@ -178,10 +175,13 @@ export const Toast: FC<Props> = ({
     const error = '#ff726b';
     const custom = '#4794ff';
 
-    if (type === 'success') return config?.backgroundColor?.success || success;
-    if (type === 'warning') return config?.backgroundColor?.warning || warning;
-    if (type === 'error') return config?.backgroundColor?.error || error;
-    if (type === 'custom') return config?.backgroundColor?.custom || custom;
+    if (data.type === 'success')
+      return config?.backgroundColor?.success || success;
+    if (data.type === 'warning')
+      return config?.backgroundColor?.warning || warning;
+    if (data.type === 'error') return config?.backgroundColor?.error || error;
+    if (data.type === 'custom')
+      return config?.backgroundColor?.custom || custom;
     return config?.backgroundColor?.success || success;
   };
 
@@ -263,7 +263,7 @@ export const Toast: FC<Props> = ({
 
   const handleDismiss = () => {
     if (disabledAutoHide) {
-      timeout = setTimeout(() => dismissToast(), duration);
+      timeout = setTimeout(() => dismissToast(), data.duration);
       return () => resetTimeout();
     }
 
@@ -280,14 +280,14 @@ export const Toast: FC<Props> = ({
   }, [toast.message, toastHeight]);
 
   useEffect(() => {
-    if (!!message) {
+    if (!!data.message.length) {
       setToast({
-        title: title,
-        message: message,
-        type: type,
+        title: data.title,
+        message: data.message,
+        type: data.type,
       });
     }
-  }, [message]);
+  }, [data]);
 
   const panGestureEvent = useAnimatedGestureHandler<
     PanGestureHandlerGestureEvent,
@@ -335,31 +335,31 @@ export const Toast: FC<Props> = ({
           config?.customIcon[toast.type]}
 
         <TextContainer>
-          {!!title && (
+          {!!data.title && (
             <Title
               fontFamily={config?.fontFamily}
               textColor={
                 typeof config?.textColor === 'string'
                   ? config?.textColor
-                  : config?.textColor?.[type]
+                  : config?.textColor?.[data.type]
               }
               size={config?.titleSize}
             >
-              {title?.trim()}
+              {data.title?.trim()}
             </Title>
           )}
 
-          {message && (
+          {data.message && (
             <Message
               fontFamily={config?.fontFamily}
               textColor={
                 typeof config?.textColor === 'string'
                   ? config?.textColor
-                  : config?.textColor?.[type]
+                  : config?.textColor?.[data.type]
               }
               size={config?.messageSize}
             >
-              {message?.trim()}
+              {data.message?.trim()}
             </Message>
           )}
         </TextContainer>
@@ -371,7 +371,7 @@ export const Toast: FC<Props> = ({
               textColor={
                 typeof config?.textColor === 'string'
                   ? config?.textColor
-                  : config?.textColor?.[type]
+                  : config?.textColor?.[data.type]
               }
             >
               {config.closeButtonText?.trim()}
