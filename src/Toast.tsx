@@ -165,6 +165,8 @@ export const Toast: FC<Props> = ({ data, config }) => {
     type: 'success',
   });
 
+  const isValidToast = !!toast.message?.trim() || toast.title?.trim();
+
   const showCloseButton = config.showCloseButton[data.type];
   const disabledAutoHide = config.autoHide[data.type];
   const disabledGesture = !disabledAutoHide;
@@ -276,11 +278,11 @@ export const Toast: FC<Props> = ({ data, config }) => {
   };
 
   useEffect(() => {
-    if (!!toast.message) handleAnimation();
-  }, [toast.message, toastHeight]);
+    if (isValidToast) handleAnimation();
+  }, [toast.message, toast.title, toastHeight]);
 
   useEffect(() => {
-    if (!!data.message.length) {
+    if (data.message || data.title) {
       setToast({
         title: data.title,
         message: data.message,
@@ -315,7 +317,7 @@ export const Toast: FC<Props> = ({ data, config }) => {
     },
   });
 
-  return toast?.message?.length > 0 ? (
+  return isValidToast ? (
     <PanGestureHandler onGestureEvent={panGestureEvent}>
       <Container
         onLayout={handleViewLayout}
@@ -335,7 +337,7 @@ export const Toast: FC<Props> = ({ data, config }) => {
           config?.customIcon[toast.type]}
 
         <TextContainer>
-          {!!data.title && (
+          {!!data.title?.trim() && (
             <Title
               fontFamily={config?.fontFamily}
               textColor={
@@ -349,7 +351,7 @@ export const Toast: FC<Props> = ({ data, config }) => {
             </Title>
           )}
 
-          {data.message && (
+          {data.message?.trim() && (
             <Message
               fontFamily={config?.fontFamily}
               textColor={

@@ -47,7 +47,6 @@ export const Title = styled.Text<TextProps>`
   font-weight: ${fontWeight};
   font-family: ${({ fontFamily }) => fontFamily ?? fontDefault};
   color: ${({ textColor }) => textColor ?? '#fff'};
-  margin-bottom: 12px;
 `;
 
 export const Message = styled.Text<TextProps>`
